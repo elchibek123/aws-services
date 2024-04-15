@@ -30,15 +30,10 @@ resource "aws_launch_template" "lt" {
   tag_specifications {
     resource_type = "instance"
 
-    tags = merge(
-      local.common_tags,
-      {
-        Name = ""
-      },
-      {
-        CreatedBy = "ASG"
-      }
-    )
+    tags = {
+      Name = ""
+      CreatedBy = "ASG"
+    }
   }
 
   depends_on = [ 
@@ -46,12 +41,9 @@ resource "aws_launch_template" "lt" {
     aws_iam_instance_profile.instance_profile
    ]
 
-  tags = merge(
-    local.common_tags,
-    {
-      Name = ""
-    }
-  )
+  tags = {
+    Name = ""
+  }
 }
 
 ########## Auto Scaling Group ##########
